@@ -12,7 +12,13 @@ firebase.initializeApp(firebaseConfig);
 let db = firebase.firestore();
 
 // let turma =
-document.getElementById("txtTurma").addEventListener("change", turma);
+// document.getElementById("txtTurma").addEventListener("change", turma);
+
+document.getElementById("txtTurmas").addEventListener("change", turma);
+
+// let turmas = document.getElementById("txtTurmas");
+// let txtTurma = turmas.options[turmas.selectedIndex].value;
+// console.log(txtTurma);
 
 // let nomeAluno =
 document.getElementById("txtNome").addEventListener("change", aluno);
@@ -27,8 +33,12 @@ document.getElementById("nota1").addEventListener("change", primeiraNota);
 document.getElementById("nota2").addEventListener("change", segundaNota);
 
 function turma() {
-  txtTurma = document.getElementById("txtTurma").value;
+  let turmas = document.getElementById("txtTurmas");
+  txtTurma = turmas.options[turmas.selectedIndex].value;
+  // console.log(txtTurma);
 }
+
+turma();
 
 function aluno() {
   nomeAluno = document.getElementById("txtNome").value;
@@ -105,20 +115,96 @@ function pesquisarAluno() {
     .then((snapshot) => {
       snapshot.forEach((doc) => {
         let aluno = doc.data();
-        document.getElementById(
-          "res"
-        ).innerHTML = `O sobrenome do aluno pesquisado é ${aluno.sobrenome} e suas notas na primeira e segunda provas foram respectivamente, ${aluno.notas.nota1} e ${aluno.notas.nota2}.`;
+        let res = document.getElementById("res");
+        res.style.display = "block";
+        document.getElementById("res").innerHTML +=
+          `${aluno.nome}` +
+          " " +
+          `${aluno.sobrenome}` +
+          "<br>" +
+          `Notas: ${aluno.notas.nota1}, ${aluno.notas.nota2}.` +
+          "<br>" +
+          "<br>";
       });
     });
 }
 
 function limparPesquisa() {
   document.getElementById("res").innerHTML = "";
+  document.getElementById("res2").innerHTML = "";
+  document.getElementById("res3").innerHTML = "";
+  document.getElementById("qual_turma").innerHTML = "";
+  document.getElementById("qual_turma2").innerHTML = "";
+  qual_turma.style.display = "none";
+  qual_turma2.style.display = "none";
+  res3.style.display = "none";
+  res2.style.display = "none";
+  res.style.display = "none";
   limpar();
+  turma();
+}
+
+function alunosCadastrados() {
+  db.collection("TurmaA")
+    .get()
+    .then((snapshot) => {
+      snapshot.forEach((doc) => {
+        let aluno = doc.data();
+        // console.log(aluno.nome);
+        // console.log(doc.data());
+        // document.getElementById("res2").innerHTML +=
+        //   "<ul> <li>" + aluno.nome + "</li> </ul>";
+        let qual_turma = document.getElementById("qual_turma");
+        qual_turma.style.display = "block";
+        let res2 = document.getElementById("res2");
+        res2.style.display = "block";
+        document.getElementById("qual_turma").innerHTML = "TurmaA";
+        document.getElementById("res2").innerHTML +=
+          "📚" +
+          aluno.nome +
+          " " +
+          aluno.sobrenome +
+          " - " +
+          aluno.notas.nota1 +
+          ", " +
+          aluno.notas.nota2 +
+          "<br>";
+      });
+    });
+  alunosCadastradosB();
+}
+
+function alunosCadastradosB() {
+  db.collection("TurmaB")
+    .get()
+    .then((snapshot) => {
+      snapshot.forEach((doc) => {
+        let aluno = doc.data();
+        // console.log(aluno.nome);
+        // console.log(doc.data());
+        // document.getElementById("res2").innerHTML +=
+        //   "<ul> <li>" + aluno.nome + "</li> </ul>";
+        let qual_turma2 = document.getElementById("qual_turma2");
+        qual_turma2.style.display = "block";
+        let res3 = document.getElementById("res3");
+        res3.style.display = "block";
+        document.getElementById("qual_turma2").innerHTML = "TurmaB";
+        document.getElementById("res3").innerHTML +=
+          "📚" +
+          aluno.nome +
+          " " +
+          aluno.sobrenome +
+          " - " +
+          aluno.notas.nota1 +
+          ", " +
+          aluno.notas.nota2 +
+          "<br>";
+      });
+    });
 }
 
 function limpar() {
-  document.getElementById("txtTurma").value = "";
+  // document.getElementById("txtTurma").value = "";
   document.getElementById("txtNome").value = "";
   document.getElementById("txtSobrenome").value = "";
   document.getElementById("nota1").value = "";

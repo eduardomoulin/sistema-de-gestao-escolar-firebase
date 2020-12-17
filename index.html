@@ -11,13 +11,18 @@
 
 
     <div class="campoCadastro">
-        <h1>Sistema de Gestão Escolar</h1>
+        <h3>Sistema de Gestão Escolar</h3>
         <div class="inputs">
             <input type="text" name="" id="txtNome" placeholder="Nome">
 
             <input type="text" name="" id="txtSobrenome" placeholder="Sobrenome">
 
-            <input type="text" name="" id="txtTurma" placeholder="Turma">
+            <!-- <input type="text" name="" id="txtTurma" placeholder="Turma"> -->
+
+            <select name="turmas" id="txtTurmas">
+                <option value="TurmaA" selected>Turma A</option>
+                <option value="TurmaB">Turma B</option>
+            </select>
 
             <input type="number" name="" id="nota1" placeholder="Nota primeira prova" max="10">
 
@@ -33,11 +38,26 @@
             id="btn_editar" class="btn" onclick="editarAluno()"> -->
 
             <input type="button" value="Limpar Pesquisa" id="btn_limpar" class="btn" onclick="limparPesquisa()">
+
+            <input type="button" value="Alunos Cadastrados" id="btn_Cadastrados" class="btn" onclick="alunosCadastrados()">
         </div>
         
         <div id="res">
             
         </div>
+
+        <div id="qual_turma"></div>
+
+        <div id="res2">
+
+        </div>
+
+        <div id="qual_turma2"></div>
+
+        <div id="res3">
+
+        </div>
+
     </div>
     </div>
 
