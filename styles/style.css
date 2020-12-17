@@ -1,0 +1,92 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background-color: rgba(100, 148, 237, 0.418);
+}
+
+h1 {
+  margin-bottom: 10%;
+}
+
+.campoCadastro {
+  height: 100vh;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputs {
+  background-color: rgb(0, 102, 255);
+  padding: 20px;
+  border-radius: 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.452);
+}
+
+input {
+  display: block;
+  padding: 8px;
+  width: 200px;
+  margin: 5px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+.btn {
+  border: none;
+  border-radius: 5px;
+  padding: 8px;
+  margin: 10px;
+  text-align: center;
+  background-color: cadetblue;
+  font-size: 15px;
+}
+
+.btn:hover {
+  background-color: rgb(43, 98, 100);
+  color: white;
+}
+
+#btn_pesquisa {
+  background-color: rgb(214, 214, 136);
+}
+
+#btn_pesquisa:hover {
+  background-color: rgb(175, 175, 110);
+}
+
+#btn_editar {
+  background-color: burlywood;
+}
+
+.btn:hover {
+  background-color: rgb(43, 98, 100);
+  color: white;
+}
+
+#btn_editar:hover {
+  background-color: rgb(255, 145, 0);
+}
+
+#btn_limpar {
+  background-color: burlywood;
+}
+
+#btn_limpar:hover {
+  background-color: rgb(255, 145, 0);
+}
+
+#res {
+  padding: 0;
+  margin-top: 5%;
+  text-align: center;
+  font-size: 20px;
+  color: white;
+  max-width: 200px;
+}

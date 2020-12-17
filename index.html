@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/style.css">
+    <title>Gestão Escolar</title>
+</head>
+<body>
+    
+
+
+    <div class="campoCadastro">
+        <h1>Sistema de Gestão Escolar</h1>
+        <div class="inputs">
+            <input type="text" name="" id="txtNome" placeholder="Nome">
+
+            <input type="text" name="" id="txtSobrenome" placeholder="Sobrenome">
+
+            <input type="text" name="" id="txtTurma" placeholder="Turma">
+
+            <input type="number" name="" id="nota1" placeholder="Nota primeira prova" max="10">
+
+            <input type="number" name="" id="nota2" placeholder="Nota segunda prova" max="10">
+        
+
+        <div class="btns">
+            <input type="button" value="Cadastrar Aluno" id="btn_cadastro" class="btn" onclick="cadastrarAluno()">
+
+            <input type="button" value="Pesquisar Aluno" id="btn_pesquisa" class="btn" onclick="pesquisarAluno()">
+
+            <!-- <input type="button" value="Editar Aluno"
+            id="btn_editar" class="btn" onclick="editarAluno()"> -->
+
+            <input type="button" value="Limpar Pesquisa" id="btn_limpar" class="btn" onclick="limparPesquisa()">
+        </div>
+        
+        <div id="res">
+            
+        </div>
+    </div>
+    </div>
+
+
+
+
+<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+
+<script src="./scripts/app.js"></script>
+</body>
+</html>
