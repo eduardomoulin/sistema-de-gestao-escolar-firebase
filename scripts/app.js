@@ -70,7 +70,7 @@ function cadastrarAluno() {
     .catch((err) => {
       console.log(err);
     });
-
+  alert("Aluno cadastrado com sucesso!");
   limpar();
 }
 
