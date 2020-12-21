@@ -13,24 +13,27 @@
     <div class="campoCadastro">
         <h3>Sistema de Gestão Escolar</h3>
         <div class="inputs">
-            <input type="text" name="" id="txtNome" placeholder="Nome">
+            <input type="text" name="" id="txtNome" placeholder="Nome" class="txts">
 
-            <input type="text" name="" id="txtSobrenome" placeholder="Sobrenome">
+            <input type="text" name="" id="txtSobrenome" placeholder="Sobrenome" class="txts">
 
             <!-- <input type="text" name="" id="txtTurma" placeholder="Turma"> -->
 
-            <select name="turmas" id="txtTurmas">
+            <select name="turmas" id="txtTurmas" class="txts">
                 <option value="TurmaA" selected>Turma A</option>
                 <option value="TurmaB">Turma B</option>
             </select>
 
-            <input type="number" name="" id="nota1" placeholder="Nota primeira prova" max="10">
+            <input type="number" name="" id="nota1" placeholder="Nota primeira prova" max="10" class="txts">
 
-            <input type="number" name="" id="nota2" placeholder="Nota segunda prova" max="10">
+            <input type="number" name="" id="nota2" placeholder="Nota segunda prova" max="10" class="txts">
+
+            <input type="text" name="Id" id="txtID" placeholder="Id do aluno para exclusão" class="txts">
         
 
         <div class="btns">
             <input type="button" value="Cadastrar Aluno" id="btn_cadastro" class="btn" onclick="cadastrarAluno()">
+
 
             <input type="button" value="Pesquisar Aluno" id="btn_pesquisa" class="btn" onclick="pesquisarAluno()">
 
@@ -40,6 +43,8 @@
             <input type="button" value="Limpar Pesquisa" id="btn_limpar" class="btn" onclick="limparPesquisa()">
 
             <input type="button" value="Alunos Cadastrados" id="btn_Cadastrados" class="btn" onclick="alunosCadastrados()">
+
+            <input type="button" value="Excluir Aluno" id="btn_Excluir" class="btn" onclick="excluirAluno()">
         </div>
         
         <div id="res">

@@ -3,6 +3,7 @@ body {
   padding: 0;
   height: 100vh;
   background-color: rgba(100, 148, 237, 0.418);
+  font-family: Georgia, "Times New Roman", Times, serif;
 }
 
 h3 {
@@ -19,13 +20,17 @@ h3 {
 }
 
 .inputs {
-  background-color: rgb(0, 102, 255);
+  background-color: rgba(0, 102, 255, 0.5);
   padding: 20px;
   border-radius: 35px;
   display: flex;
   flex-direction: column;
   align-items: center;
   box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.452);
+}
+
+::selection {
+  background-color: darkslategray;
 }
 
 select {
@@ -59,6 +64,11 @@ input::placeholder {
   text-align: center;
   background-color: cadetblue;
   font-size: 15px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.txts {
+  font-family: Georgia, "Times New Roman", Times, serif;
 }
 
 .btn:hover {
@@ -103,6 +113,14 @@ input::placeholder {
   background-color: rgb(112, 64, 0);
 }
 
+#btn_Excluir {
+  background-color: rgb(212, 79, 79);
+}
+
+#btn_Excluir:hover {
+  background-color: red;
+}
+
 #res {
   padding: 0;
   margin-top: 5%;
@@ -119,7 +137,7 @@ input::placeholder {
   text-align: center;
   font-size: 20px;
   color: white;
-  max-width: 300px;
+  max-width: 100%;
   display: none;
 }
 
@@ -129,7 +147,7 @@ input::placeholder {
   text-align: center;
   font-size: 20px;
   color: white;
-  max-width: 300px;
+  max-width: 100%;
   display: none;
 }
 

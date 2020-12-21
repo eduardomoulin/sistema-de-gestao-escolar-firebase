@@ -11,14 +11,7 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 let db = firebase.firestore();
 
-// let turma =
-// document.getElementById("txtTurma").addEventListener("change", turma);
-
 document.getElementById("txtTurmas").addEventListener("change", turma);
-
-// let turmas = document.getElementById("txtTurmas");
-// let txtTurma = turmas.options[turmas.selectedIndex].value;
-// console.log(txtTurma);
 
 // let nomeAluno =
 document.getElementById("txtNome").addEventListener("change", aluno);
@@ -32,38 +25,33 @@ document.getElementById("nota1").addEventListener("change", primeiraNota);
 // let nota1 =
 document.getElementById("nota2").addEventListener("change", segundaNota);
 
+document.getElementById("txtID").addEventListener("change", idAluno);
+
+function idAluno() {
+  idDoAluno = document.getElementById("txtID").value;
+}
+
 function turma() {
   let turmas = document.getElementById("txtTurmas");
   txtTurma = turmas.options[turmas.selectedIndex].value;
-  // console.log(txtTurma);
 }
 
 turma();
 
 function aluno() {
   nomeAluno = document.getElementById("txtNome").value;
-  //   console.log(nomeAluno);
 }
 
 function sobrenome() {
   sobrenomeAluno = document.getElementById("txtSobrenome").value;
 }
 
-// function nota() {
-//   notas = {
-//     nota1: document.getElementById("nota1").value,
-//     nota2: document.getElementById("nota2").value,
-//   };
-// }
-
 function primeiraNota() {
   nota1 = parseInt(document.getElementById("nota1").value);
-  //   console.log(nota1);
 }
 
 function segundaNota() {
   nota2 = parseInt(document.getElementById("nota2").value);
-  //   console.log(nota2);
 }
 
 function cadastrarAluno() {
@@ -84,27 +72,18 @@ function cadastrarAluno() {
   limpar();
 }
 
-// function editarAluno() {
-//   alert(
-//     "Para editar um aluno, certifique-se de inserir a turma e o nome do aluno."
-//   );
-
-//   db.collection(txtTurma)
-//     .doc(nomeAluno)
-//     .update({
-//       nome: `${nomeAluno}`,
-//       sobrenome: `${sobrenomeAluno}`,
-//       "notas.nota1": nota1,
-//       "notas.nota2": nota2,
-//     })
-//     .then(() => {
-//       console.log("Aluno atualizado com sucesso:");
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-//   limpar();
-// }
+function excluirAluno() {
+  db.collection(txtTurma)
+    .doc(idDoAluno)
+    .delete()
+    .then(() => {
+      alert("Aluno excluído com sucesso");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  limpar();
+}
 
 function pesquisarAluno() {
   db.collection(txtTurma)
@@ -129,31 +108,13 @@ function pesquisarAluno() {
     });
 }
 
-function limparPesquisa() {
-  document.getElementById("res").innerHTML = "";
-  document.getElementById("res2").innerHTML = "";
-  document.getElementById("res3").innerHTML = "";
-  document.getElementById("qual_turma").innerHTML = "";
-  document.getElementById("qual_turma2").innerHTML = "";
-  qual_turma.style.display = "none";
-  qual_turma2.style.display = "none";
-  res3.style.display = "none";
-  res2.style.display = "none";
-  res.style.display = "none";
-  limpar();
-  turma();
-}
-
 function alunosCadastrados() {
   db.collection("TurmaA")
     .get()
     .then((snapshot) => {
       snapshot.forEach((doc) => {
         let aluno = doc.data();
-        // console.log(aluno.nome);
-        // console.log(doc.data());
-        // document.getElementById("res2").innerHTML +=
-        //   "<ul> <li>" + aluno.nome + "</li> </ul>";
+
         let qual_turma = document.getElementById("qual_turma");
         qual_turma.style.display = "block";
         let res2 = document.getElementById("res2");
@@ -161,6 +122,10 @@ function alunosCadastrados() {
         document.getElementById("qual_turma").innerHTML = "TurmaA";
         document.getElementById("res2").innerHTML +=
           "📚" +
+          doc.id +
+          " - " +
+          " " +
+          " " +
           aluno.nome +
           " " +
           aluno.sobrenome +
@@ -172,6 +137,7 @@ function alunosCadastrados() {
       });
     });
   alunosCadastradosB();
+  esconderElementos();
 }
 
 function alunosCadastradosB() {
@@ -180,10 +146,7 @@ function alunosCadastradosB() {
     .then((snapshot) => {
       snapshot.forEach((doc) => {
         let aluno = doc.data();
-        // console.log(aluno.nome);
-        // console.log(doc.data());
-        // document.getElementById("res2").innerHTML +=
-        //   "<ul> <li>" + aluno.nome + "</li> </ul>";
+
         let qual_turma2 = document.getElementById("qual_turma2");
         qual_turma2.style.display = "block";
         let res3 = document.getElementById("res3");
@@ -191,6 +154,10 @@ function alunosCadastradosB() {
         document.getElementById("qual_turma2").innerHTML = "TurmaB";
         document.getElementById("res3").innerHTML +=
           "📚" +
+          doc.id +
+          " - " +
+          " " +
+          " " +
           aluno.nome +
           " " +
           aluno.sobrenome +
@@ -204,9 +171,62 @@ function alunosCadastradosB() {
 }
 
 function limpar() {
-  // document.getElementById("txtTurma").value = "";
   document.getElementById("txtNome").value = "";
   document.getElementById("txtSobrenome").value = "";
   document.getElementById("nota1").value = "";
   document.getElementById("nota2").value = "";
+  document.getElementById("txtID").value = "";
+}
+
+function limparPesquisa() {
+  document.getElementById("res").innerHTML = "";
+  document.getElementById("res2").innerHTML = "";
+  document.getElementById("res3").innerHTML = "";
+  document.getElementById("qual_turma").innerHTML = "";
+  document.getElementById("qual_turma2").innerHTML = "";
+  qual_turma.style.display = "none";
+  qual_turma2.style.display = "none";
+  res3.style.display = "none";
+  res2.style.display = "none";
+  res.style.display = "none";
+
+  limpar();
+  turma();
+  mostrarElementos();
+}
+
+function esconderElementos() {
+  let txts = document.querySelectorAll(".txts");
+  var i;
+
+  for (var i = 0; i < txts.length; i++) {
+    txts[i].style.display = "none";
+  }
+
+  let botaoCadastro = document.getElementById("btn_cadastro");
+  botaoCadastro.style.display = "none";
+
+  let botaoPesquisa = document.getElementById("btn_pesquisa");
+  botaoPesquisa.style.display = "none";
+
+  let botaoExcluir = document.getElementById("btn_Excluir");
+  botaoExcluir.style.display = "none";
+}
+
+function mostrarElementos() {
+  let txts = document.querySelectorAll(".txts");
+  var i;
+
+  for (var i = 0; i < txts.length; i++) {
+    txts[i].style.display = "block";
+  }
+
+  let botaoCadastro = document.getElementById("btn_cadastro");
+  botaoCadastro.style.display = "block";
+
+  let botaoPesquisa = document.getElementById("btn_pesquisa");
+  botaoPesquisa.style.display = "block";
+
+  let botaoExcluir = document.getElementById("btn_Excluir");
+  botaoExcluir.style.display = "block";
 }
